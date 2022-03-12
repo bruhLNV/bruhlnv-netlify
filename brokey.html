@@ -1,0 +1,836 @@
+<html>
+
+<head>
+  <!-- Title -->
+  <title>bruhlnv! //  login</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="static/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="msapplication-config" content="static/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Metadata -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- JQuery -->
+  <script src="ajax/libs/jquery/3.5.1/jquery.slim.min.js"
+    integrity="sha512-/DXTXr6nQodMUiq+IUJYCt2PPOUjrHJ9wFrqpJ3XkgPNOZVfMok7cRw6CSxyCQxXn6ozlESsSh1/sMCTF1rL/g=="
+    crossorigin="anonymous"></script>
+
+  <!-- Bulma -->
+  <link rel="stylesheet" href="gh/HakuraSukinoe/bulma-hsl/bulma.min-v7.css" />
+
+  <!-- Font awesome -->
+  <script src="static/fa/js/all.js" crossorigin="anonymous"></script>
+
+  <!-- Custom style -->
+  <link rel="stylesheet" href="static/css/style.css">
+
+
+<link rel="stylesheet" href="static/css/pages/auth.css">
+<style>
+		canvas {
+		    position: fixed;
+		    width: 100%;
+		    height: 100%;
+		    z-index: -100;
+		    opacity: 0.5;
+		}
+
+		body {
+  			background: url(static/img/auth/bg/login.png);
+  			background-size: cover;
+  			background-repeat: no-repeat;
+			background-position: 0px -100px;
+  			opacity: 1;
+ 			position: absolute;
+  			top: 0;
+ 			bottom: 0;
+ 			right: 0;
+ 			left: 0;
+ 			z-index: -1;
+		}
+
+		#padder {
+			height: 20vh;
+		}
+
+		#lain {
+			margin-bottom: -18px;
+			transition: 1s;
+			text-align: center;
+			position: relative;
+			z-index: 1000;
+		}
+
+		#block {
+			background-color: #000;
+			width: 60em;
+			padding: 1em;
+			overflow-y: hidden;
+			max-height: 100vh;
+			transition: 1s;
+			box-shadow: 0px 0px 256px rgba(255, 255, 0, 0.2);
+			padding-bottom: 1.2em;
+		}
+
+		h1 {
+			font-size: 2.5em !important;
+			font-family: A;
+			margin: 0;
+		}
+
+		h2 {
+			font-family: A;
+			color: #FF0;
+			margin: 0;
+			margin-top: 0.5em;
+			text-align: left;
+		}
+
+		input {
+			font-size: 3.45em;
+			width: calc(100% - 2px);
+			background-color: #000;
+			border: 1px solid #FF0;
+			color: #FF0;
+			font-family: Heading;
+			letter-spacing: 6px;
+			text-align: center;
+			box-shadow: 0px 4px #FF0;
+		}
+
+		.bad input {
+			color: #F00;
+			border: 1px solid #F00;
+			box-shadow: 0px 4px #F00;
+		}
+
+		.good input {
+			color: #0F0;
+			border: 1px solid #0F0;
+			box-shadow: 0px 4px #0F0;
+		}
+
+		.bad h2 {
+			color: #F00;
+		}
+
+		.good h2 {
+			color: #0F0;
+		}
+
+		.bad#block {
+			box-shadow: 0px 0px 256px rgba(255, 0, 0, 0.3);
+			transition: 0.1s;
+		}
+
+		.good#block {
+			box-shadow: 0px 0px 256px rgba(0, 255, 0, 0.3);
+			transition: 0.1s;
+		}
+
+		#confirm {
+			font-size: 3em;
+			width: 100%;
+			background-color: #000;
+			border: 1px solid #FF0;
+			color: #FF0;
+			text-align: center;
+			margin-top: 0.4em;
+			cursor: pointer;
+			box-shadow: 0px 8px #FF0, 0px 8px 32px rgba(255,255,0,0.3), inset 0px 8px 32px rgba(255,255,0,0.3);
+			font-family: A;
+			position: relative;
+			top: 0px;
+		}
+
+		.bad #confirm {
+			color: #F00 !important;
+			border: 1px solid #F00 !important;
+			top: 6px !important;
+			box-shadow: 0px 2px #F00, 0px 8px 64px rgba(255,0,0,0.4), inset 0px 8px 64px rgba(255,0,0,0.4) !important;
+		}
+
+		.good #confirm {
+			color: #0F0 !important;
+			border: 1px solid #0F0 !important;
+			top: 6px !important;
+			box-shadow: 0px 2px #0F0, 0px 8px 64px rgba(0,255,0,0.4), inset 0px 8px 64px rgba(0,255,0,0.4) !important;
+		}
+
+		#confirm:hover, .wait#confirm {
+			color: #F80;
+			border: 1px solid #F80;
+			box-shadow: 0px 4px #F80, 0px 8px 64px rgba(255,155,0,0.4), inset 0px 8px 64px rgba(255,155,0,0.4);
+			top: 4px;
+		}
+
+		.bad {
+			animation: 0.25s shake infinite linear;
+		}
+
+		@keyframes shake {
+			0% {
+				position: relative;
+				left: 0px;
+				top: 0px;
+			}
+			10% {
+				position: relative;
+				left: -1px;
+				top: -2px;
+			}
+			20% {
+				position: relative;
+				left: 2px;
+				top: -1px;
+			}
+			30% {
+				position: relative;
+				left: 0px;
+				top: -4px;
+			}
+			40% {
+				position: relative;
+				left: 2px;
+				top: -1px;
+			}
+			50% {
+				position: relative;
+				left: -1px;
+				top: 2px;
+			}
+			60% {
+				position: relative;
+				left: 4px;
+				top: -3px;
+			}
+			70% {
+				position: relative;
+				left: -2px;
+				top: 2px;
+			}
+			80% {
+				position: relative;
+				left: 4px;
+				top: -2px;
+			}
+			90% {
+				position: relative;
+				left: -1px;
+				top: 1px;
+			}
+			100% {
+				position: relative;
+				left: 0px;
+				top: 0px;
+			}
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.blur {
+			filter: blur(5px);
+		}
+
+		#c {
+			background-color: #FF0;
+			margin-top: 0.8em;
+			color: #000;
+		}
+
+		#c img {
+			width: 12.5em;
+			border: 8px solid #000;
+			margin-top: -8px;
+			margin-bottom: -17px;
+		}
+
+		#c input {
+			width: 6em;
+			position: relative;
+			top: -0.15em;
+		}
+
+		#c>div {
+			display: inline-block;
+			width: 45em;
+		}
+
+		#c a {
+			font-size: 2em;
+			position: relative;
+			top: -0.5em;
+			left: 0.5em;
+			font-family: A;
+		}
+
+		.bad #c {
+			background-color: #F00;
+		}
+
+		.good #c {
+			background-color: #0F0;
+		}
+
+		#block.nope {
+			max-height: 0px;
+			padding-bottom: 0px;
+			transition: 0.4s;
+		}
+
+		#block.nah {
+			opacity: 0;
+		}
+
+		#lain.nope {
+			opacity: 0;
+		}
+
+		#fadein {
+			transition: 1s;
+		}
+
+		#fadein.nope {
+			opacity: 0;
+		}
+
+		#note {
+			text-align: center;
+			transition: 1s;
+		}
+
+		#note span {
+			color: #FF0;
+		}
+
+		.badd#note span {
+			color: #F00;
+		}
+
+		.goodd#note span {
+			color: #0F0;
+		}
+
+		#note.nope {
+			opacity: 0;
+		}
+
+		#eidcube, #confirmcube {
+			transition: 1s;
+		}
+
+		#eidcube.nope, #confirmcube.nope {
+			opacity: 0;
+		}
+	</style>
+
+</head>
+
+<body>
+  <!-- Header -->
+  <head><meta http-equiv="content-type" content="text/html;charset=UTF-8">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="static/img/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="static/img/icons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="static/img/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="static/manifest.json">
+	<link rel="mask-icon" href="static/img/icons/safari-pinned-tab.svg" color="#000000">
+	<link rel="shortcut icon" href="static/img/icons/favicon.ico">
+	<meta name="msapplication-config" content="static/browserconfig.html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#000000">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="static/css/reset.css"><link rel="stylesheet" href="static/css/common.css"><link rel="stylesheet" href="static/css/scanlines.css"><script src="static/js/jquery.js"></script><script src="static/js/howler.js"></script><script src="static/js/cookies.js"></script>
+	<style>
+		@font-face {
+			font-family: CNT;
+			src: url(static/font/countdown.ttf);
+		}
+
+		#countdown {
+			font-family: CNT;
+			font-size: 3em;
+			margin: 0;
+			text-shadow: 0px 0px 16px #FF0;
+		}
+
+#warning {
+    width: 100%;
+    background-color: #FF0;
+    color: #F00;
+    text-align: center;
+    min-height: 63px;
+}
+
+#warningcontent p {
+    margin: 0;
+}
+
+		#count h3 {
+			font-size: 16px;
+			margin: 0;
+			color: #888;
+		}
+
+		#slots h4 {
+			font-size: 24px;
+			margin: 0;
+			margin-top: 0.5em;
+		}
+
+		#slots h3 {
+			font-size: 16px;
+			margin: 0;
+			color: #888;
+			margin-bottom: 1em;
+		}
+
+		#belief h4 {
+			font-size: 24px;
+			margin: 0;
+			margin-top: 0.5em;
+		}
+
+		#belief h3 {
+			font-size: 16px;
+			margin: 0;
+			color: #888;
+			margin-bottom: 1em;
+		}
+
+		#flyer {
+			width: 100%;
+			height: 0px;
+			background-color: #000;
+			background-image: url(static/img/bg/home.png);
+			background-attachment: fixed;
+			background-position: center;
+			transition: height 5s, opacity 5s;
+		}
+
+
+		#wallpaper {
+			width: 100%;
+			height: 70vh;
+			background-color: #000;
+			background-image: url(static/img/bg/home.png);
+			background-attachment: fixed;
+			background-position: center;
+		}
+
+		#wallpaper #lain {
+			position: absolute;
+			top: calc(70vh - 456px);
+			left: 10vw;
+			transition: top 0s;
+		}
+
+		#wallpaper h1 {
+			position: absolute;
+			left: calc(10vw + 450px);
+			top: calc(70vh - 380px);
+			font-family: Heading;
+			font-size: 3vw;
+			text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+			transition: top 0s;
+		}
+
+		#register-button {
+			color: #FFFF00;
+		}
+
+		#register-button:hover {
+			color: #FF0000;
+			text-shadow: 0px 0px 10px #FF0000;
+		}
+
+
+		#intro {
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1000000;
+			background-color: #000;
+		}
+
+		#intro.ready {
+			animation: 1.7s introHeat cubic-bezier(.82,.28,.93,.3) forwards;
+		}
+
+		#intro h1 {
+			position: fixed;
+			left: calc(10vw + 450px);
+			top: calc(70vh - 380px);
+			font-family: Heading;
+			font-size: 3vw;
+			text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+		}
+
+		#intro.ready h1 {
+			animation: 1.7s typeHeat cubic-bezier(.82,.28,.93,.3) forwards;
+		}
+
+		#intro h6 {
+			position: relative;
+			top: 90vh;
+			cursor: pointer;
+			margin: 0;
+			color: #FFF;
+			opacity: 0.2;
+		}
+
+		#intro.destroyed {
+			transition: 2s;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		@keyframes introHeat {
+			0% {
+				background-color: #000;
+			}
+			100% {
+				background-color: #888;
+			}
+		}
+
+		@keyframes typeHeat {
+			0% {
+				text-shadow: 0px 0px 0px #FFF;
+				color: #FFF;
+			}
+			100% {
+				text-shadow: 0px 0px 100px #FFF, 0px 0px 20px #FFF, 0px 0px 10px #FFF;
+				color: #AAA;
+			}
+		}
+
+		#back {
+			background-color: rgba(0,0,0,1);
+			border: 1px solid #FFF;
+			box-shadow: 0px 6px #7859CC, 0px 0px 16px #7859CC;
+			width: 10em;
+			font-family: Heading;
+			font-size: 2em;
+			cursor: pointer;
+			position: absolute;
+			left: calc(19vw + 450px);
+			top: calc(90vh - 380px);
+			transition: 0.5s;
+			text-align: left;
+		}
+
+#knob8 {
+    position: fixed;
+    right: 60;
+    top: 20px;
+}
+
+#knob4 {
+    position: fixed;
+    left: 155px;
+    top: 20px;
+}
+
+#knob5 {
+    position: fixed;
+    left: 370px;
+    top: 20px;
+}
+
+#knob9 {
+    position: fixed;
+    left: 253px;
+    top: 20px;
+}
+
+		#back:hover {
+			box-shadow: 0px 2px #7859CC, 0px 0px 64px #7859CC;
+			top: calc(90vh - 375px);
+		}
+	</style>
+</head>
+<body>
+<div id="contentloader" class="destroyedloader">
+	<img id="loadtsuki" src="static/img/loader/loadtsuki.png">
+	<img id="loadspin" src="static/img/loader/loadfinish.png">
+</div>
+<style>
+	#contentloader {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #000;
+		z-index: 10000;
+		transition: 0.2s;
+	}
+
+	#loadtsuki {
+		position: absolute;
+		left: calc(50% - 48px);
+		top: calc(50% - 48px);
+	}
+
+	#loadspin {
+		position: absolute;
+		left: calc(50% - 46px);
+		top: calc(50% - 47px);
+		animation: LoaderSpin 2s infinite linear;
+	}
+
+	@keyframes LoaderSpin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	.destroyedloader {
+		opacity: 0;
+		pointer-events: none;
+		transition: 0.5s !important;
+	}
+
+	.destroyedloader #loadtsuki {
+		top: calc(50% - 100px);
+		transition: 0.5s ease-in !important;
+	}
+
+	.destroyedloader #loadspin {
+		top: calc(50% - 100px);
+		transition: 0.5s ease-in !important;
+	}
+</style>
+<script>
+	window.addEventListener("load", function(event) {
+		document.getElementById("contentloader").className = "destroyedloader";
+		document.getElementById("loadspin").src = "static/img/loader/loadfinish.png";
+	});
+
+	window.onbeforeunload = function() {
+		document.getElementById("contentloader").classList.remove("destroyedloader");
+		document.getElementById("loadspin").src = "static/img/loader/loadspin.png";
+	}
+</script>
+<div id="header">
+  <div id="headerbar">
+		<a href=""><img id="headerstatus" src="static/img/headerbar/status-ok.png"></a>		<img id="headerfade_left" src="static/img/headerbar/fade-left.png">
+		<marquee truespeed="" scrolldelay="30" scrollamount="3" id="headernews">
+			<img class="newssep" src="static/img/headerbar/sep.png">
+			<p>welcome to my website!</p>
+			<img class="newssep" src="static/img/headerbar/sep.png">
+			<p>this is indeed a beta test!</p>
+			<img class="newssep" src="static/img/headerbar/sep.png">
+			<p style="color: yellow">latest news! the site u see is under construction</p>
+			<img class="newssep" src="static/img/headerbar/sep.png">
+			<p>hi hello</p>
+			<img class="newssep" src="static/img/headerbar/sep.png">
+			<p>thankz to tsuki</a></p>
+			<img class="newssep" src="static/img/headerbar/sep.png">
+		</marquee>
+	</div>
+	<a href="main.html"><img id="knob" src="static/img/headerbar/knobs/tsuki_knob.png"></a>
+	<a href="brokey.html"><img id="knob5" src="static/img/headerbar/knobs/loginknob.png"></a>
+	<a href="bio.html"><img id="knob9" src="static/img/headerbar/knobs/rulesknob.png"></a>
+
+
+</div>
+<style>
+	#header {
+		position: relative;
+		z-index: 1;
+	}
+
+	#headerbar {
+		position: fixed;
+		width: 100%;
+		left: 0;
+		top: 0;
+		height: 20px;
+		background-color: #000;
+		box-shadow: 0px 1px #FFF, 0px 2px #000;
+	}
+
+	#headerstatus {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+
+	#headerfade_left {
+		position: fixed;
+		left: 150px;
+		top: 0px;
+		z-index: 1;
+	}
+
+	#headernews {
+		width: 100%;
+		font-family: Heading;
+		font-size: 16px;
+		letter-spacing: -4px;
+	}
+
+	#headernews p {
+		display: inline;
+		position: relative;
+		top: -2px;
+	}
+
+	#knob {
+		position: fixed;
+		left: 0;
+		top: 20px;
+	}
+
+	#knob2 {
+		position: fixed;
+		right: 0;
+		top: 20px;
+	}
+
+	#knob3 {
+		position: fixed;
+		right: 100px;
+		top: 20px;
+	}
+
+	#knob5 {
+		position: fixed;
+		left: 350px;
+		top: 20px;
+	}
+
+	#knob6 {
+		position: fixed;
+		left: 460px;
+		top: 20px;
+	}
+
+	#knob7 {
+		position: fixed;
+		left: 492px;
+		top: 20px;
+	}
+</style>
+
+  <!-- Content -->
+  <div class="container is-fullhd my-con">
+
+
+<div class="main-block is-marginless is-paddingless is-auth">
+  <div class="columns is-reset is-weeb">
+    <div class="column title-block">
+      <h1 class="title" id="regtitle">login (it brokey)</h1>
+    </div>
+  </div>
+  <div class="columns is-reset flex-lcenter is-block">
+    <div class="box">
+     <div class="content">
+    <form action="login" method="post" class="form-content">
+      <div class="field">
+        <label for="user" class="label">username</label>
+        <div class="control has-icons-left">
+          <input id="user" type="text" name="username" placeholder="username" class="input" autocomplete="username">
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="pass" class="label">password</label>
+        <div class="control has-icons-left">
+          <input id="pass" type="password" name="password" placeholder="password" class="input" autocomplete="current-password">
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+      </div>
+      <div class="mt-5"></div>
+      <div class="dialog">
+      </div>
+      <div class="field flex-vcenter">
+        </div>
+      </div>
+    </form></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  </div>
+
+  <!-- Footer -->
+  <br>
+<style>	body {
+		display: flex;
+  		flex-direction: column;
+	}
+
+	footer {
+		filter: drop-shadow(0px -1px #FFF);
+		z-index: 99999;
+		background-color: #000;
+		width: calc(100%);
+		margin-bottom: 0;
+		color: #FFF;
+		margin-top: auto;
+		opacity: 0.1;
+
+		transition: 2s opacity ease-out;
+	}
+
+	footer.scrolled, footer:hover {
+		opacity: 1;
+
+		transition: 0.3s opacity ease-in;
+	}
+
+	.footer-block {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0.5em;
+	}
+
+	.footer-block_left {
+		text-align: left;
+	}
+	.footer-block_right {
+		text-align: right;
+	}
+
+	#footer-logo {
+		height: 4em;
+	}</style>
+	<footer class="scrolled">
+	<div class="footer-block footer-block_left">
+		<img src="static/img/pageindex/logos/tsuki.png" id="footer-logo">
+	</div>
+	<div class="footer-block footer-block_left">
+    <p>
+			<span>running both heavily modified <strong>bruh engine v1.3.3.7 and bruhweb.</strong> all mods by LNV.</span>	</p>
+	</div>
+</footer>
+
+  <!-- Main JS script -->
+  <script src="static/js/main.js" crossorigin="anonymous"></script>
+
+  <!-- Customisation -->
+
+</body>
+
+</html>
