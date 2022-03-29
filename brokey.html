@@ -2,7 +2,7 @@
 
 <head>
   <!-- Title -->
-  <title>bruhlnv! //  login</title>
+  <title>bruhlnv! //  vegas mats</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="static/favicon/favicon.ico">
@@ -28,306 +28,342 @@
   <link rel="stylesheet" href="static/css/style.css">
 
 
-<link rel="stylesheet" href="static/css/pages/auth.css">
-<style>
-		canvas {
-		    position: fixed;
-		    width: 100%;
-		    height: 100%;
-		    z-index: -100;
-		    opacity: 0.5;
+<link rel="stylesheet" href="static/css/pages/rules.css">
+<style>html {--main: 355;}</style>
+<style>.sectionable-block {
+	width: 95vw;
+	margin-left: 2.5vw;
+	text-align: center;
+	vertical-align: top;
+	margin-bottom: 2vw;
+}
+
+html body {
+  background-color: #000000
+
+}
+
+section {
+	--section-color: var(--main-color);
+
+	background-color: #000;
+	color: var(--section-color);
+	width: calc(100% - 2em);
+	padding: 1em;
+	margin-top: 1.5vw;
+	margin-bottom: 3vw;
+	filter: drop-shadow(0px 1px 0px var(--section-color)) drop-shadow(0px -1px 0px var(--section-color)) drop-shadow(-1px 0px 0px var(--section-color)) drop-shadow(1px 0px 0px var(--section-color));
+	text-align: justify;
+}
+
+section ::selection {
+	background-color: var(--section-color);
+	color: #000;
+}
+section ::-moz-selection {
+	background-color: var(--section-color);
+	color: #000;
+}
+
+.float-above {
+	display: inline-block;
+	width: calc(90vw + 1.5em);
+	vertical-align: top;
+}
+
+.float-above section::before {
+	height: 2.25vw;
+	margin-bottom: -2.25vw;
+	top: calc(-2.25vw - 1em + 1px);
+}
+
+.float-above section::after {
+	height: 2.25vw;
+	margin-top: -2.25vw;
+	top: calc(2.25vw + 1em - 1px);
+}
+
+.float-left {
+	display: inline-block;
+	width: 60vw;
+	margin-right: 0.5em;
+	vertical-align: top;
+}
+
+.float-right {
+	display: inline-block;
+	width: 30vw;
+	margin-left: 0.5em;
+	vertical-align: top;
+	margin-top: -1.55vw;
+}
+
+.float-right section {
+	margin-bottom: 2.25vw;
+}
+
+.float-right section::before {
+	height: 0.75vw;
+	margin-bottom: -0.75vw;
+	top: calc(-0.75vw - 1em + 1px);
+}
+
+.float-right section::after {
+	height: 0.75vw;
+	margin-top: -0.75vw;
+	top: calc(0.75vw + 1em - 1px);
+}
+
+@media screen and (max-width: 800px) {
+	.float-above {
+		display: block;
+		width: 95vw;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+    .float-left {
+		display: block;
+		width: 95vw;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.float-right {
+		display: block;
+		width: 95vw;
+		margin-left: 0;
+		margin-right: 0;
+		margin-top: 0;
+	}
+
+	section {
+		margin-bottom: 4vw !important;
+		margin-right: 0;
+	}
+
+	.float-above section::before {
+		height: 2.375vw;
+		margin-bottom: -2.375vw;
+		top: calc(-2.375vw - 1em + 1px);
+	}
+
+	.float-above section::after {
+		height: 2.375vw;
+		margin-top: -2.375vw;
+		top: calc(2.375vw + 1em - 1px);
+	}
+
+	.float-left section::before {
+		height: 2.375vw;
+		margin-bottom: -2.375vw;
+		top: calc(-2.375vw - 1em + 1px);
+	}
+
+	.float-left section::after {
+		height: 2.375vw;
+		margin-top: -2.375vw;
+		top: calc(2.375vw + 1em - 1px);
+	}
+
+	.float-right section::before {
+		height: 2.375vw;
+		margin-bottom: -2.375vw;
+		top: calc(-2.375vw - 1em + 1px);
+	}
+
+	.float-right section::after {
+		height: 2.375vw;
+		margin-top: -2.375vw;
+		top: calc(2.375vw + 1em - 1px);
+	}
+		h5 {
+			font-family: "Heading", sans-serif;
+			font-size: 1.2em;
+			margin-top: 1em;
+			margin-bottom: 0.25em;
 		}
 
-		body {
-  			background: url(static/img/auth/bg/login.png);
-  			background-size: cover;
-  			background-repeat: no-repeat;
-			background-position: 0px -100px;
-  			opacity: 1;
- 			position: absolute;
-  			top: 0;
- 			bottom: 0;
- 			right: 0;
- 			left: 0;
- 			z-index: -1;
+		p {
+			margin-bottom: 0.5em;
 		}
 
-		#padder {
-			height: 20vh;
+		ul {
+			margin-bottom: 0.5em;
 		}
 
-		#lain {
-			margin-bottom: -18px;
-			transition: 1s;
-			text-align: center;
+		ol {
+			counter-reset: olc;
+		}
+
+		li {
 			position: relative;
-			z-index: 1000;
+			margin-left: 2em;
+			margin-bottom: 0.25em;
 		}
 
-		#block {
-			background-color: #000;
-			width: 60em;
-			padding: 1em;
-			overflow-y: hidden;
-			max-height: 100vh;
-			transition: 1s;
-			box-shadow: 0px 0px 256px rgba(255, 255, 0, 0.2);
-			padding-bottom: 1.2em;
-		}
-
-		h1 {
-			font-size: 2.5em !important;
-			font-family: A;
-			margin: 0;
-		}
-
-		h2 {
-			font-family: A;
-			color: #FF0;
-			margin: 0;
-			margin-top: 0.5em;
-			text-align: left;
-		}
-
-		input {
-			font-size: 3.45em;
-			width: calc(100% - 2px);
-			background-color: #000;
-			border: 1px solid #FF0;
-			color: #FF0;
-			font-family: Heading;
-			letter-spacing: 6px;
-			text-align: center;
-			box-shadow: 0px 4px #FF0;
-		}
-
-		.bad input {
-			color: #F00;
-			border: 1px solid #F00;
-			box-shadow: 0px 4px #F00;
-		}
-
-		.good input {
-			color: #0F0;
-			border: 1px solid #0F0;
-			box-shadow: 0px 4px #0F0;
-		}
-
-		.bad h2 {
-			color: #F00;
-		}
-
-		.good h2 {
-			color: #0F0;
-		}
-
-		.bad#block {
-			box-shadow: 0px 0px 256px rgba(255, 0, 0, 0.3);
-			transition: 0.1s;
-		}
-
-		.good#block {
-			box-shadow: 0px 0px 256px rgba(0, 255, 0, 0.3);
-			transition: 0.1s;
-		}
-
-		#confirm {
-			font-size: 3em;
-			width: 100%;
-			background-color: #000;
-			border: 1px solid #FF0;
-			color: #FF0;
-			text-align: center;
-			margin-top: 0.4em;
-			cursor: pointer;
-			box-shadow: 0px 8px #FF0, 0px 8px 32px rgba(255,255,0,0.3), inset 0px 8px 32px rgba(255,255,0,0.3);
-			font-family: A;
-			position: relative;
-			top: 0px;
-		}
-
-		.bad #confirm {
-			color: #F00 !important;
-			border: 1px solid #F00 !important;
-			top: 6px !important;
-			box-shadow: 0px 2px #F00, 0px 8px 64px rgba(255,0,0,0.4), inset 0px 8px 64px rgba(255,0,0,0.4) !important;
-		}
-
-		.good #confirm {
-			color: #0F0 !important;
-			border: 1px solid #0F0 !important;
-			top: 6px !important;
-			box-shadow: 0px 2px #0F0, 0px 8px 64px rgba(0,255,0,0.4), inset 0px 8px 64px rgba(0,255,0,0.4) !important;
-		}
-
-		#confirm:hover, .wait#confirm {
-			color: #F80;
-			border: 1px solid #F80;
-			box-shadow: 0px 4px #F80, 0px 8px 64px rgba(255,155,0,0.4), inset 0px 8px 64px rgba(255,155,0,0.4);
-			top: 4px;
-		}
-
-		.bad {
-			animation: 0.25s shake infinite linear;
-		}
-
-		@keyframes shake {
-			0% {
-				position: relative;
-				left: 0px;
-				top: 0px;
-			}
-			10% {
-				position: relative;
-				left: -1px;
-				top: -2px;
-			}
-			20% {
-				position: relative;
-				left: 2px;
-				top: -1px;
-			}
-			30% {
-				position: relative;
-				left: 0px;
-				top: -4px;
-			}
-			40% {
-				position: relative;
-				left: 2px;
-				top: -1px;
-			}
-			50% {
-				position: relative;
-				left: -1px;
-				top: 2px;
-			}
-			60% {
-				position: relative;
-				left: 4px;
-				top: -3px;
-			}
-			70% {
-				position: relative;
-				left: -2px;
-				top: 2px;
-			}
-			80% {
-				position: relative;
-				left: 4px;
-				top: -2px;
-			}
-			90% {
-				position: relative;
-				left: -1px;
-				top: 1px;
-			}
-			100% {
-				position: relative;
-				left: 0px;
-				top: 0px;
-			}
-		}
-
-		.hidden {
-			display: none;
-		}
-
-		.blur {
-			filter: blur(5px);
-		}
-
-		#c {
-			background-color: #FF0;
-			margin-top: 0.8em;
-			color: #000;
-		}
-
-		#c img {
-			width: 12.5em;
-			border: 8px solid #000;
-			margin-top: -8px;
-			margin-bottom: -17px;
-		}
-
-		#c input {
-			width: 6em;
-			position: relative;
-			top: -0.15em;
-		}
-
-		#c>div {
+		ul li::before {
+			content: "-->";
 			display: inline-block;
-			width: 45em;
+			position: absolute;
+			left: -2em;
+			top: 0;
 		}
 
-		#c a {
-			font-size: 2em;
+		ol li {
+			min-height: 1.5em;
+			padding-top: 0.25em;
+			padding-bottom: 0.25em;
+			border-bottom: 1px solid #222;
+		}
+
+		ol li:last-child {
+			border-bottom: none;
+		}
+
+		ol li::before {
+			counter-increment: olc;
+
+			content: counter(olc);
+			display: inline-block;
+			position: absolute;
+			left: -1.4em;
+			top: 0.05em;
+			font-size: 1.5em;
+			font-family: "Heading", sans-serif;
+			letter-spacing: -0.3em;
+			text-align: right;
+			width: 1em;
+		}
+
+		#in-short {
+			border: 1px solid #FFF;
+			padding: 0.5em;
+			padding-top: 1.5em;
 			position: relative;
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+
+		#in-short h2 {
+			position: absolute;
+			left: 0.3em;
 			top: -0.5em;
-			left: 0.5em;
-			font-family: A;
+			font-family: "Heading", sans-serif;
+			font-size: 1.25em;
+			display: inline-block;
+			background-color: #000;
 		}
 
-		.bad #c {
-			background-color: #F00;
+		#in-short h6 {
+			border-top: 1px dotted #FFF;
+			margin-top: 0.5em;
+			margin-left: -0.5em;
+			margin-right: -0.5em;
+			padding: 0.5em;
+			padding-bottom: 0;
+			font-family: "Tiny", sans-serif;
 		}
 
-		.good #c {
-			background-color: #0F0;
-		}
+.highlight {
+	color: var(--accent-color);
+}
 
-		#block.nope {
-			max-height: 0px;
-			padding-bottom: 0px;
-			transition: 0.4s;
-		}
+section::before {
+	content: "";
+	background-color: #000;
+	clip-path: url("#clip-sectiontop");
+	display: block;
+	height: 1.5vw;
+	margin-bottom: -1.5vw;
+	position: relative;
+	top: calc(-1.5vw - 1em + 1px);
+	left: -1em;
+	width: calc(100% + 2em);
+}
 
-		#block.nah {
-			opacity: 0;
-		}
+section::after {
+	content: "";
+	background-color: #000;
+	clip-path: url("#clip-sectionbottom");
+	display: block;
+	height: 1.5vw;
+	margin-top: -1.5vw;
+	position: relative;
+	top: calc(1.5vw + 1em - 1px);
+	left: -1em;
+	width: calc(100% + 2em);
+}
 
-		#lain.nope {
-			opacity: 0;
-		}
+section h1 {
+	font-size: 2em;
+	font-family: "Heading", sans-serif;
+	text-align: center;
+	border-bottom: 1px solid;
+	margin-left: -0.5em;
+	margin-right: -0.5em;
+	padding-bottom: 0.3em;
+	margin-bottom: 0.3em;
+	margin-top: -0.5em;
+}
 
-		#fadein {
-			transition: 1s;
-		}
+section h3 {
+	font-size: 1.4em;
+	font-family: "Tiny", sans-serif;
+	text-align: center;
+}
 
-		#fadein.nope {
-			opacity: 0;
-		}
+section.slim {
+	--section-color: #FFF;
+	filter: none;
+	text-align: justify;
+}
 
-		#note {
-			text-align: center;
-			transition: 1s;
-		}
+section.slim h1 {
+	font-size: 2em;
+	font-family: "Heading", sans-serif;
+	text-align: left;
+	border-bottom: 1px solid;
+	margin-left: 0em;
+	margin-right: 0em;
+	padding-bottom: 0.3em;
+	margin-bottom: 0.3em;
+	margin-top: -0.5em;
+}
 
-		#note span {
-			color: #FF0;
-		}
+.link>section {
+	--section-color: var(--main-color);
 
-		.badd#note span {
-			color: #F00;
-		}
+	background-color: #000;
+	color: var(--section-color);
+	text-align: center;
 
-		.goodd#note span {
-			color: #0F0;
-		}
+	font-family: "Tiny", sans-serif;
+}
 
-		#note.nope {
-			opacity: 0;
-		}
+.link>section span {
+	font-size: 2.5em;
+	position: relative;
+	top: 0.3em;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	line-height: 0px;
+}
 
-		#eidcube, #confirmcube {
-			transition: 1s;
-		}
-
-		#eidcube.nope, #confirmcube.nope {
-			opacity: 0;
-		}
-	</style>
+.link>section:hover {
+	background-color: var(--section-color);
+	color: #000;
+}
+.link>section:hover::before {
+	background-color: var(--section-color);
+}
+.link>section:hover::after {
+	background-color: var(--section-color);
+}
+html body {
+  background-color: #000000;
+}
+</style>
 
 </head>
 
@@ -624,19 +660,19 @@
 	}
 </script>
 <div id="header">
-  <div id="headerbar">
+	<div id="headerbar">
 		<a href=""><img id="headerstatus" src="static/img/headerbar/status-ok.png"></a>		<img id="headerfade_left" src="static/img/headerbar/fade-left.png">
 		<marquee truespeed="" scrolldelay="30" scrollamount="3" id="headernews">
 			<img class="newssep" src="static/img/headerbar/sep.png">
 			<p>welcome to my website!</p>
 			<img class="newssep" src="static/img/headerbar/sep.png">
-			<p>this is indeed a beta test!</p>
+			<p>thx to netlify <3</p>
 			<img class="newssep" src="static/img/headerbar/sep.png">
-			<p style="color: yellow">latest news! the site u see is under construction</p>
+			<p style="color: yellow">latest news! custom domain was set to https://bruhlnv.tk</p>
 			<img class="newssep" src="static/img/headerbar/sep.png">
 			<p>hi hello</p>
 			<img class="newssep" src="static/img/headerbar/sep.png">
-			<p>thankz to tsuki</a></p>
+			<p>enjoy your stay!</a></p>
 			<img class="newssep" src="static/img/headerbar/sep.png">
 		</marquee>
 	</div>
@@ -729,48 +765,16 @@
   <!-- Content -->
   <div class="container is-fullhd my-con">
 
-
-<div class="main-block is-marginless is-paddingless is-auth">
-  <div class="columns is-reset is-weeb">
-    <div class="column title-block">
-      <h1 class="title" id="regtitle">login (it brokey)</h1>
-    </div>
-  </div>
-  <div class="columns is-reset flex-lcenter is-block">
-    <div class="box">
-     <div class="content">
-    <form action="login" method="post" class="form-content">
-      <div class="field">
-        <label for="user" class="label">username</label>
-        <div class="control has-icons-left">
-          <input id="user" type="text" name="username" placeholder="username" class="input" autocomplete="username">
-          <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-          </span>
-        </div>
-      </div>
-      <div class="field">
-        <label for="pass" class="label">password</label>
-        <div class="control has-icons-left">
-          <input id="pass" type="password" name="password" placeholder="password" class="input" autocomplete="current-password">
-          <span class="icon is-small is-left">
-            <i class="fa fa-lock"></i>
-          </span>
-        </div>
-      </div>
-      <div class="mt-5"></div>
-      <div class="dialog">
-      </div>
-      <div class="field flex-vcenter">
-        </div>
-      </div>
-    </form></div>
-    </div>
-  </div>
-</div>
-
-
-
+<div id="index">
+		<div class="overload">
+		<center><img src="static/img/pageindex/logos/tsuki.png" width="212" height="128"></img>
+		<h2>bruhLNV's official Vegas Pro material pack</h2>
+		<center><a href="https://drive.google.com/drive/folders/15gJWJkWO9oXsUefInEjS_oWMDDto-hp5?usp=sharing">@! bruhLNV Vegas Pro Mats</a></center>
+		<center>all of the provided software is virus free</center>
+		<center>these are meant to be used with vegas pro</center>
+		<center>it also has a vegas pro crack XD</center>
+		</div>
+	</div>
 
   </div>
 
@@ -821,7 +825,7 @@
 		<img src="static/img/pageindex/logos/tsuki.png" id="footer-logo">
 	</div>
 	<div class="footer-block footer-block_left">
-    <p>
+		<p>
 			<span>running both heavily modified <strong>bruh engine v1.3.3.7 and bruhweb.</strong> all mods by LNV.</span>	</p>
 	</div>
 </footer>
